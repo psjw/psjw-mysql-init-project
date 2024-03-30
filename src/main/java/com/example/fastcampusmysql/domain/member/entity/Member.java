@@ -13,15 +13,15 @@ public class Member {
     final private Long id;
     private String nickname;
     final private String email;
-    final private LocalDate birthDay;
+    final private LocalDate birthday;
     final private LocalDateTime createdAt;
     final private static Long NAME_MAX_LENGTH = 10L;
 
     @Builder
-    public Member(Long id, String nickname, String email, LocalDate birthDay, LocalDateTime createdAt) {
+    public Member(Long id, String nickname, String email, LocalDate birthday, LocalDateTime createdAt) {
         this.id = id;
         this.email = Objects.requireNonNull(email);
-        this.birthDay = Objects.requireNonNull(birthDay);
+        this.birthday = Objects.requireNonNull(birthday);
 
         this.nickname = Objects.requireNonNull(nickname);
         validateNickname(nickname);
