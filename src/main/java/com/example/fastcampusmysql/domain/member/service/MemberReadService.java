@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,11 @@ public class MemberReadService {
     public MemberDto getMember(Long id) {
         var member = memberRepository.findById(id).orElseThrow();
         return toDto(member);
+    }
+
+    public List<MemberDto> getMembers(List<Long> ids){
+        var members = memberRepository.findAllByIdIn(ids);
+        return members.stream().map(this::toDto).collect(Collectors.toList());
     }
 
     public List<MemberNicknameHistoryDto> getNicknameHistories(Long memberId){
